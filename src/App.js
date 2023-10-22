@@ -7,7 +7,6 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import LoginPage from './components/Login/Login';
-import { getAuthUserData } from './redux/authReducer';
 import { compose } from 'redux';
 
 class App extends Component {
@@ -43,6 +42,5 @@ class App extends Component {
 const mapStateToProps = (state) => ({
     initialized: state.app.initialized
 })
-
 
 export default compose(withRouter, connect(mapStateToProps, {initializeApp})) (App);

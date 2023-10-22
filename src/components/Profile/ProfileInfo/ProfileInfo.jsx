@@ -2,8 +2,8 @@ import React from "react";
 import s from "./ProfileInfo.module.css";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
-const ProfileInfo = (props) => {
-  if (!props.profile) {
+const ProfileInfo = (profile, status, updateStatus) => {
+  if (!profile) {
     return <Preloader />;
   }
 
@@ -13,8 +13,8 @@ const ProfileInfo = (props) => {
         <img src="https://klike.net/uploads/posts/2019-11/1572608893_20.jpg"></img>
       </div>
       <div className={s.descriptionBlock}>
-        <img src={props.profile.photos.large} />
-        <ProfileStatusWithHooks status = {props.status} updateStatus = {props.updateStatus} />
+        <img src={profile.photos.large} />
+        <ProfileStatusWithHooks status = {status} updateStatus = {updateStatus} />
       </div>
     </div>
   );

@@ -14,11 +14,13 @@ import { getFollowingInProgress } from '../../redux/usersSelectors';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
+        let {currentPage, pageSize} = this.props;
         this.props.getUsers(this.props.currentPage, this.props.pageSize); 
         
     }  
 
     onPageChanget = (pageNumber) => {
+        let {pageSize} = this.props;
         this.props.getUsers(pageNumber, this.props.pageSize); 
 
     }
@@ -40,17 +42,6 @@ class UsersContainer extends React.Component {
             </>
         }
     }
-
-// let mapStateToProps = (state) => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         isFollowingInProgress: state.usersPage.followingInProgress,
-//     }
-// }
 
 let mapStateToProps = (state) => {
     return {
