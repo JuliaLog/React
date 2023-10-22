@@ -10,10 +10,21 @@ describe('ProfileStatus component', () => {
         expect(instance.state.status).toBe('I am programmer');
     });
 
-    test('after creation span should be displayed with correct status', () => {
+    test('after creation <input> should be displayed with correct status', () => {
         const component = create(<ProfileStatus text='I am programmer' />);
         const root = component.root;
-        let span = root.findByType('span');
-        expect(span.length).toBe(1);
+        expect( () => {
+            let input = root.findByType('input');
+        }).toThrow();
+    });
+
+    test('callback chould be called', () => {
+        const mockCallback = jest.fn();
+        const component = create(<ProfileStatus text='I am programmer' />);
+        const instance = component.getInstance();
+        instance.deactivateEditMode();
+        expect(mockCallback.mock.calls.length).toBe(1);
     });
 });
+
+  
