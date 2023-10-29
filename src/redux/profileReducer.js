@@ -78,12 +78,15 @@ export const  savePhoto = (file) => async (dispatch) => {
             dispatch(savePhotoSucces(response.data.data.photos));
         } 
 }
-export const  saveProfile = (profile) => async (dispatch) => {
-   let response = await profileAPI.saveProfile(profile)
+export const  saveProfile = (profile) => async (dispatch, getState) => {
+    const userId = getState().auth.userId;
+    const response = await profileAPI.saveProfile(profile)
         if (response.data.resultCode === 0) {
-            dispatch(savePhotoSucces(response.data.data.photos));
-        } 
+            dispatch(getUserProfile(userId));
+        } else {
+            dispatch(stopSubmit('edit-profile', response.data.messages[0]));
+            return Promise.reject(response.data.messages[0]);
+        }
 }
-
 
 export default profileReducer;

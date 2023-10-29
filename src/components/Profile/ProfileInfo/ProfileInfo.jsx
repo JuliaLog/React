@@ -19,7 +19,10 @@ const ProfileInfo = (profile, status, updateStatus, isOwner, saveProfile) => {
   }
 
   const onSubmit = (formData) => {
-    console.log(formData);
+    saveProfile(formData).then(() => {
+        setEditMode(false);
+    })
+   
   }
 
   return (
@@ -30,8 +33,9 @@ const ProfileInfo = (profile, status, updateStatus, isOwner, saveProfile) => {
       <div className={s.descriptionBlock}>
         <img src={profile.photos.large || userPhoto} className={s.mainPhoto}/>
         { isOwner && <input type={'file'} onChange={onMainPhotoSelected} /> }
-        { editMode ? <ProfileDataForm profile = {profile} onSubmit={onSubmit} /> : <ProfileData goToEditMode={() => {setEditMode(true)}} profile = {profile} isOwner = {isOwner} /> }
-        <ProfileData profile={profile} />
+        { editMode 
+        ? <ProfileDataForm initialValues={profile} profile = {profile} onSubmit={onSubmit} /> 
+        : <ProfileData goToEditMode={() => {setEditMode(true)}} profile = {profile} isOwner = {isOwner} /> }
         <ProfileStatusWithHooks status = {status} updateStatus = {updateStatus} />
       </div>
     </div>

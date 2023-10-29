@@ -28,7 +28,7 @@ const MyPosts = React.memo(props => {
     // shouldComponentUpdate (nextProps, nextState) {
     //     return nextProps != this.props || nextState != this.state;
     // }
-    let postsElements = props.posts.map( p => <Post message = {p.message} likesCount = {p.likesCount} />)
+    let postsElements = props.posts.map( p => <Post key={p.id} message = {p.message} likesCount = {p.likesCount} />)
 
     let newPostElement = React.createRef();
       

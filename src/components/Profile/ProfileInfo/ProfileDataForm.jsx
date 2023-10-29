@@ -1,12 +1,16 @@
 import React from "react"
 import { Input, Textarea, createField } from "../../commen/FormsControls/FormsControls";
 import { reduxForm } from "redux-form";
+import s from "./ProfileInfo.module.css";
 
-const ProfileDataForm = ({handleSubmit, profile}) => {
+const ProfileDataForm = ({handleSubmit, profile,error}) => {
     return <form onSubmit={handleSubmit}>
             <div>
                 <button>save</button>
             </div>
+            { error && <div className={style.formSammaryError}>
+                {error}
+            </div>}
             <div>
                 <b>Full name</b>: {createField('Full name', 'fullName', [], Input)}
             </div>
@@ -23,7 +27,9 @@ const ProfileDataForm = ({handleSubmit, profile}) => {
             </div>
             <div>
                 <b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
-                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
+                    return <div key={key} className={s.contact}>
+                        <b>{key}: {createField(key, 'contacts.' + key, [], Input)}</b>
+                    </div>
                 })}
             </div>
         </form>
