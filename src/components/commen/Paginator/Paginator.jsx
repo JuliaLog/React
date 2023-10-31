@@ -10,11 +10,17 @@ let Paginator = (totalUsersCount, pageSize, currentPage, onPageChanget) => {
     for (let i = 0; i <= pagesCount; i++) {
         pages.push(i);
     }
-  return <div>
-        {pages.map((p) => {
+  return <div className={cn(styles.paginator)}>
+    { portionNumber > 1 &&
+    <button onClick={() => { setPortionNumber(portionNumber - 1)}}>PREV</button>}
+        {pages
+        .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+        .map((p) => {
           return (
             <span
-              className={currentPage === p && selectedPage}
+              className={cn ({
+                [style.selectedPage]: currentPage === p}, styles.pageNumber) }
+                key={p}
               onClick={(e) => {
                 onPageChanget(p);
               }}
