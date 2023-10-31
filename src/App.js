@@ -29,6 +29,8 @@ class App extends Component {
             <Navbar />
             <div className='app-wrapper-content'>
                 <Switch>
+                    <Routes exact path='/' 
+                    render = {() => <Redirect to={'/profile'} />} />  
                     <Routes path='/dialogs' 
                     render = { withSuspense (DialogsContainer) }/>  
                     <Routes path='/profile/:userId?' 
