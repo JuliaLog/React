@@ -28,14 +28,16 @@ class App extends Component {
             <HeaderContainer />
             <Navbar />
             <div className='app-wrapper-content'>
-              <Routes path='/dialogs' 
-                render = { withSuspense (DialogsContainer) }/>  
-              <Routes path='/profile/:userId?' 
-                render = { withSuspense (ProfileContainer) }/>  
-              <Routes path='/users' 
-                render = { () => <UsersContainer />} />
-              <Routes path='/login' 
-                render = { () => <LoginPage />} />
+                <Switch>
+                    <Routes path='/dialogs' 
+                    render = { withSuspense (DialogsContainer) }/>  
+                    <Routes path='/profile/:userId?' 
+                        render = { withSuspense (ProfileContainer) }/>  
+                    <Routes path='/users' 
+                        render = { () => <UsersContainer />} />
+                    <Route der = { () => <LoginPage />} />
+                </Switch>
+              
             </div>
           </div>
       );
