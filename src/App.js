@@ -36,6 +36,8 @@ class App extends Component {
                     <Routes path='/users' 
                         render = { () => <UsersContainer />} />
                     <Route der = { () => <LoginPage />} />
+                    <Routes path='*' 
+                        render = { () => <div>404 NOT FOUND</div>} />
                 </Switch>
               
             </div>
