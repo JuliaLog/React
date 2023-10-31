@@ -5,7 +5,8 @@ const SET_INITIALIXED_SOCCESS = 'SET-INITIALIXED-SOCCESS';
 
 
 let initialState = {
-  initialized: false
+  initialized: false,
+  globalError: null
 };
 
 const appReducer = (state = initialState, action) => {
